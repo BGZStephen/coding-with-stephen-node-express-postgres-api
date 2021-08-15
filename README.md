@@ -1,4 +1,4 @@
-# Coding with stephen: Node, Express, Posrtgres API
+# Coding with Stephen: Node, Express, Posrtgres API
 
 ## What we'll be building
 
