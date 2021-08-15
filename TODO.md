@@ -6,4 +6,3 @@
 - Add jest (27.0.6)
 - Add dotenv (10.0.0)
 - Add an index
-- Set up nodemon
