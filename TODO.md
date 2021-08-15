@@ -1,8 +1,6 @@
-# Part 1 - Project setup
+# Part 2 - Setting up our config 
 
-- Add express (4.17.1)
-- Add cors (2.8.5)
-- Add nodemon (2.0.12)
-- Add jest (27.0.6)
-- Add dotenv (10.0.0)
-- Add an index
+- Add .env file
+- Add basic config
+- Add app starter
+- Write tests for config
