@@ -1,5 +1,5 @@
-# Part 2 - Setting up our config 
+# Part 3 - Testing our config
 
-- Add .env file
-- Add basic config
-- Add app starter
+- Set up jest for unit tests
+- Add unit tests for config
+- Add unit tests for startup
