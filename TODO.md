@@ -3,4 +3,3 @@
 - Add .env file
 - Add basic config
 - Add app starter
-- Write tests for config
