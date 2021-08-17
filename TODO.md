@@ -1,5 +1,6 @@
-# Part 3 - Testing our config
+# Part 4 - Setting up our HTTP Server
 
-- Set up jest for unit tests
-- Add unit tests for config
-- Add unit tests for startup
+- Add HTTP server
+- Add basic /ping route
+- Add test for HTTP Server
+- Add to app starter
