@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "unit-test": "jest --runInBand --coverage --verbose -c jest.unit.config.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
