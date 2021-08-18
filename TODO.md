@@ -1,4 +1,4 @@
-# Part 4 - Setting up our HTTP Server
+# Part 5 - Testing our HTTP Server start()
 
-- Add HTTP server
-- Add to app starter
+- Testing our HTP server start()
+- Extending our AppStarter tests
