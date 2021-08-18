@@ -1,4 +1,5 @@
-# Part 5 - Testing our HTTP Server start()
+# Part 6 - Adding logging to our API
 
-- Testing our HTP server start()
-- Extending our AppStarter tests
+- Add winston logging
+- Configure our logger
+- Apply the new logger to our current code
