@@ -1,5 +1,11 @@
 const { validateEnvProvidedConfig } = require(".")
 
+jest.mock("../logger")
+
+beforeEach(() => {
+  jest.clearAllMocks();  
+})
+
 describe("Config", () => {
   describe("validateEnvProvidedConfig", () => {
     test("Calls process.exit with a value of 1 if there are missing environment variables", () => {
