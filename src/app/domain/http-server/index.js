@@ -1,6 +1,7 @@
 const express = require("express")
 const cors = require("cors")
 const { config } = require("../config")
+const { logger } = require("../logger")
 
 class AppHttpServerFactory {
   port = config.EXPRESS_PORT;
@@ -13,7 +14,7 @@ class AppHttpServerFactory {
       app.use(express.json())
 
       app.listen(this.port, () => {
-        console.log(`HTTP Server started on port ${this.port}`)
+        logger.info(`HTTP Server started on port ${this.port}`)
 
         resolve()
       })

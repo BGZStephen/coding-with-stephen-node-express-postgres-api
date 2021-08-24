@@ -1,5 +1,5 @@
-# Part 6 - Adding logging to our API
+# Part 7 - Starting postgres with Docker
 
-- Add winston (library)
-- Configure our logger
-- Apply the new logger to our current code
+- Brief introduction to Docker
+- Setting up a docker compose file
+- Connecting to our database\
