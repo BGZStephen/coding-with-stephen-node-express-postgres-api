@@ -1,0 +1,8 @@
+{
+  "restartable": "rs",
+  "verbose": false,
+  "watch": ["src"],
+  "delay": 500,
+  "exec": "node ./src/app/index.js",
+  "ext": "js"
+}

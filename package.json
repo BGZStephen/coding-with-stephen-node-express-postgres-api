@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "dev": "docker-compose up -d && nodemon",
     "unit-test": "jest --runInBand --coverage --verbose -c jest.unit.config.js"
   },
   "dependencies": {
@@ -8,6 +9,7 @@
     "express": "^4.17.1",
     "jest": "^27.0.6",
     "nodemon": "^2.0.12",
+    "pg": "^8.7.1",
     "winston": "^3.3.3"
   }
 }
