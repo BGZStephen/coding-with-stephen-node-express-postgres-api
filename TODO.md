@@ -1,5 +1,4 @@
-# Part 8 - Adding postgres to our application
+# Part 9 - Creating the users table
 
-- Set up nodemon
-- Add database client
-- Test database client
+- Add migration framework
+- Create the users table
