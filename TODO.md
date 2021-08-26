@@ -1,5 +1,5 @@
-# Part 7 - Starting postgres with Docker
+# Part 8 - Adding postgres to our application
 
-- Brief introduction to Docker
-- Setting up a docker compose file
-- Connecting to our database\
+- Set up nodemon
+- Add database client
+- Test database client
