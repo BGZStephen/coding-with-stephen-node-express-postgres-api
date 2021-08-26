@@ -32,7 +32,12 @@ describe("Config", () => {
           ENV: "dev",
           EXPRESS_PORT: "3000",
           SECRET: "secret",
-          API_URL: "http://localhost:3000"
+          API_URL: "http://localhost:3000",
+          POSTGRES_DATABASE: "postgres",
+          POSTGRES_USER: "postgres",
+          POSTGRES_PASSWORD: "postgres",
+          POSTGRES_HOST: "localhost",
+          POSTGRES_PORT: "5432"
         }
       }
 
