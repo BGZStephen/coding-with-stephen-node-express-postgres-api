@@ -1,13 +1,15 @@
 {
   "scripts": {
     "dev": "docker-compose up -d && nodemon",
-    "unit-test": "jest --runInBand --coverage --verbose -c jest.unit.config.js"
+    "unit-test": "jest --runInBand --coverage --verbose -c jest.unit.config.js",
+    "migrate": "DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres node-pg-migrate"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jest": "^27.0.6",
+    "node-pg-migrate": "^5.10.0",
     "nodemon": "^2.0.12",
     "pg": "^8.7.1",
     "winston": "^3.3.3"
