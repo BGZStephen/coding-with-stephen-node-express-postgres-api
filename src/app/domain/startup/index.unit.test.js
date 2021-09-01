@@ -2,6 +2,7 @@ const { AppStarter } = require(".")
 
 jest.mock("../config")
 jest.mock("../http-server")
+jest.mock("../db")
 
 beforeEach(() => {
   jest.clearAllMocks();  
