@@ -33,4 +33,28 @@ describe("UserStore", () => {
       expect(require("../db").postgres.client.query).toHaveBeenCalledTimes(1)
     })
   })
+
+  describe("getUserByEmail", () => {
+    test("Calls query with the correct parameters", async () => {
+      const user = {
+        firstName: "John",
+        lastName: "Smith",
+        email: "john.smith@test.com",
+        password: "Password123!"
+      }
+
+      const dbSendMock = require("../db").postgres.client.query.mockResolvedValue({ rows: [user] });
+
+      const res = await UserStore.getUserByEmail(user.email);
+
+      const functionInputs = dbSendMock.mock.calls[0]
+
+      expect(functionInputs[0]).toEqual('SELECT * FROM users WHERE email = $1')
+
+      expect(functionInputs[1]).toEqual(user.email)
+
+      expect(res).toEqual(user)
+      expect(require("../db").postgres.client.query).toHaveBeenCalledTimes(1)
+    })
+  })
 })
