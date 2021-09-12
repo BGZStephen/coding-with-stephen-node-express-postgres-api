@@ -1,6 +1,5 @@
-# Part 12 - User creation endpoint - route
+# Part 13 - User creation endpoint - testing
 
-- Add validation framework
-- Add create user validation constraint
-- Add error handling middleware
-- Add create user route
+- Write tests for our route endpoint
+- Hit our endpoint with data
+- Validate the data ends up in postgres
