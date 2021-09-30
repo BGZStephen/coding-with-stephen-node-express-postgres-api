@@ -1,4 +1,4 @@
-# Part 13 - User creation endpoint - unit testing
+# Part 14 - User creation endpoint - testing with postman
 
-- Add an async wrapper
-- Write tests for our user routes
+- Test our endpoint using postman
+- Validate data arrives within postgres using dbeaver
