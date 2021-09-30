@@ -1,4 +1,5 @@
-# Part 14 - User creation endpoint - testing with postman
+# Part 15 - User creation endpoint - integration tests
 
-- Test our endpoint using postman
-- Validate data arrives within postgres using dbeaver
+- Add utils to support integration tests
+- Add configuration for integration tests
+- Write some integration tests for our user creation endpoint
