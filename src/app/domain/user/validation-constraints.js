@@ -13,6 +13,7 @@ const userCreationBodyConstraint = Joi.object().required().keys({
     .email()
     .required()
     .messages({
+      'string.base': "Email must be a string",
       'string.email': "Email is not valid",
       'any.required': "Email is required"
     }),
@@ -22,6 +23,7 @@ const userCreationBodyConstraint = Joi.object().required().keys({
     'any.required': "Password is required"
   })
 }).messages({
+  'object.base': "Body must be a valid object",
   'any.required': "Missing all user properties"
 })
 
