@@ -1,6 +1,5 @@
-# Part 15 - User creation endpoint - integration tests
+# Part 16 - Adding a user redactor
 
-- Add configuration for integration tests
-- Add utils to support integration tests
-- Add our HTTP Request maker (axios)
-- Write some integration tests for our user creation endpoint
+- Add a user redactor
+- Add unit tests for user redaction
+- Update existing tests
