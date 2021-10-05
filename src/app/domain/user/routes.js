@@ -3,6 +3,7 @@ const { validateThrow } = require("../utils/validation");
 const { userCreationBodyConstraint } = require("./validation-constraints");
 const { UserHandlers } = require("./handlers");
 const { asyncwrap } = require("../utils/async-wrap");
+const { redactUser } = require("./redactor");
 
 class UserRouter {
   router = undefined
@@ -22,7 +23,7 @@ class UserRouter {
 
     const user = await UserHandlers.createUser(req);
 
-    res.json(user)
+    res.json(redactUser(user))
   }
 }
 
