@@ -51,7 +51,7 @@ describe("UserStore", () => {
 
       expect(functionInputs[0]).toEqual('SELECT * FROM users WHERE email = $1')
 
-      expect(functionInputs[1]).toEqual(user.email)
+      expect(functionInputs[1][0]).toEqual(user.email)
 
       expect(res).toEqual(user)
       expect(require("../db").postgres.client.query).toHaveBeenCalledTimes(1)

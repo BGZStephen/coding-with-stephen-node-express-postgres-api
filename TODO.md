@@ -1,4 +1,5 @@
-# Part 14 - User creation endpoint - testing with postman
+# Part 16 - Adding a user redactor
 
-- Test our endpoint using postman
-- Validate data arrives within postgres using dbeaver
+- Add a user redactor
+- Add unit tests for user redaction
+- Update existing tests

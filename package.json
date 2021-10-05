@@ -2,10 +2,12 @@
   "scripts": {
     "dev": "docker-compose up -d && nodemon",
     "unit-test": "jest --runInBand --coverage --verbose -c jest.unit.config.js",
+    "integration-test": "jest --verbose -c jest.integration.config.js",
     "migrate": "DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres node-pg-migrate"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
