@@ -2,6 +2,7 @@ const express = require("express")
 const { UserRouter } = require("./routes")
 
 jest.mock("./handlers")
+jest.mock("./redactor")
 
 beforeEach(() => {
   jest.resetAllMocks();
