@@ -1,5 +1,4 @@
-# Part 16 - Adding a user redactor
+# Part 17 - Authentication tokens table
 
-- Add a user redactor
-- Add unit tests for user redaction
-- Update existing tests
+- Add a migration for an authentication tokens table
+- Update test utils queries to support new features
