@@ -1,4 +1,4 @@
-# Part 18 - Authentication tokens store
+# Part 19 - Authentication token generator
 
-- Add functions to created, get and delete authentication tokens
+- Add authentication token generator
 - Write corresponding unit tests
