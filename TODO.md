@@ -1,4 +1,4 @@
-# Part 17 - Authentication tokens table
+# Part 18 - Authentication tokens store
 
-- Add a migration for an authentication tokens table
-- Update test utils queries to support new features
+- Add functions to created, get and delete authentication tokens
+- Write corresponding unit tests
