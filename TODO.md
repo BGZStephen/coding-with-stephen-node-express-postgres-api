@@ -1,4 +1,5 @@
-# Part 19 - Authentication token generator
+# Part 20 - Authenticating newly created users
 
-- Add authentication token generator
-- Write corresponding unit tests
+- Update create user endpoint
+- Update unit tests
+- Update integration tests
