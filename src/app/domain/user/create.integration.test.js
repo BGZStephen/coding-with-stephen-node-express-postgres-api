@@ -28,11 +28,14 @@ describe("user -> create", () => {
 
     expect(res.status).toEqual(200)
     expect(res.data).toEqual({
-      id: expect.any(Number),
-      firstName: "john",
-      lastName: "doe",
-      email: "john.doe@test.com",
-      createdAt: expect.stringMatching(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/)
+      user: {
+        id: expect.any(Number),
+        firstName: "john",
+        lastName: "doe",
+        email: "john.doe@test.com",
+        createdAt: expect.stringMatching(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/)
+      },
+      token: expect.stringMatching(/[A-Za-z0-9\-]{36}/)
     })
   })
 
