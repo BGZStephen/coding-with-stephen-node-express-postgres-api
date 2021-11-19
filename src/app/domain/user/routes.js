@@ -21,9 +21,9 @@ class UserRouter {
   async createUser(req, res) {
     validateThrow(req.body, userCreationBodyConstraint)
 
-    const user = await UserHandlers.createUser(req);
+    const {user, token} = await UserHandlers.createUser(req);
 
-    res.json(redactUser(user))
+    res.json({user: redactUser(user), token})
   }
 }
 

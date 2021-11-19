@@ -1,5 +1,4 @@
-# Part 20 - Authenticating newly created users
+# Part 21 - Authenticating users (handler)
 
-- Update create user endpoint
-- Update unit tests
-- Update integration tests
+- Add user authentication handler
+- Add unit tests

@@ -3,6 +3,7 @@ const { UserHandlers } = require("./handlers");
 
 jest.mock("bcryptjs")
 jest.mock("./store")
+jest.mock("../authentication-token/generator")
 
 beforeEach(() => {
   jest.resetAllMocks();
@@ -42,6 +43,7 @@ describe("handlers", () => {
         password: "HASHED_PASSWORD"
       }
 
+      require("../authentication-token/generator").createAuthenticationToken.mockResolvedValue({userId: 1, token: "authentication-token"})
       require("./store").UserStore.getUserByEmail.mockResolvedValue(null);
       require("./store").UserStore.insertUser.mockResolvedValue(createdUser);
       require("bcryptjs").hashSync.mockReturnValue("HASHED_PASSWORD");
@@ -50,7 +52,7 @@ describe("handlers", () => {
         body: user
       }
 
-      await expect(UserHandlers.createUser(req)).resolves.toEqual(createdUser)
+      await expect(UserHandlers.createUser(req)).resolves.toEqual({user: createdUser, token: "authentication-token"})
       expect(require("./store").UserStore.insertUser).toHaveBeenCalledWith(createdUser)
       expect(require("bcryptjs").hashSync).toHaveBeenCalledTimes(1)
     })

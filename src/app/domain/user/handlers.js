@@ -1,6 +1,7 @@
 const { UserStore } = require("./store");
 const { HTTPError } = require("../errors/http-error")
 const { hashSync } = require("bcryptjs")
+const { createAuthenticationToken } = require("../authentication-token/generator")
 
 class UserHandlers {
   static async createUser(req) {
@@ -15,7 +16,9 @@ class UserHandlers {
 
     const user = await UserStore.insertUser(userCreationParams);
 
-    return user;
+    const tokenDbResponse = await createAuthenticationToken(user.id)
+
+    return {user, token: tokenDbResponse.token};
   }
 }
 
