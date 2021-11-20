@@ -1,6 +1,6 @@
 const { UserStore } = require("./store");
 const { HTTPError } = require("../errors/http-error")
-const { hashSync } = require("bcryptjs")
+const { hashSync, compareSync } = require("bcryptjs")
 const { createAuthenticationToken } = require("../authentication-token/generator")
 
 class UserHandlers {
@@ -19,6 +19,22 @@ class UserHandlers {
     const tokenDbResponse = await createAuthenticationToken(user.id)
 
     return {user, token: tokenDbResponse.token};
+  }
+
+  static async authenticateUser(req) {
+    const user = await UserStore.getUserByEmail(req.body.email)
+
+    if (!user) {
+      throw new HTTPError(400, "Invalid email address or password")
+    }
+
+    if (!compareSync(req.body.password, user.password)) {
+      throw new HTTPError(400, "Invalid email address or password")
+    }
+
+    const authenticationToken = await createAuthenticationToken(user.id)
+
+    return { token: authenticationToken.token, user }
   }
 }
 
