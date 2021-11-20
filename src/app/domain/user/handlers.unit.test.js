@@ -57,4 +57,66 @@ describe("handlers", () => {
       expect(require("bcryptjs").hashSync).toHaveBeenCalledTimes(1)
     })
   })
+
+  describe("authenticateUser", () => {
+    test("Throws an error if the email provided does not match a user in our database", () => {
+      const user = {
+        email: "john.smith@test.com",
+        password: "Password123!"
+      }
+
+      const req = {
+        body: {
+          email: user.email,
+          password: user.password
+        }
+      }
+
+      require("./store").UserStore.getUserByEmail.mockResolvedValue(undefined)
+
+      expect(UserHandlers.authenticateUser(req)).rejects.toThrow(new HTTPError(400, "Invalid email address or password"))
+    })
+
+    test("Throws an error if the password provided does not match a found users password in our database", () => {
+      const user = {
+        email: "john.smith@test.com",
+        password: "Password123!"
+      }
+
+      const req = {
+        body: {
+          email: user.email,
+          password: user.password
+        }
+      }
+
+      require("./store").UserStore.getUserByEmail.mockResolvedValue(user)
+      require("bcryptjs").compareSync.mockReturnValue(false)
+
+      expect(UserHandlers.authenticateUser(req)).rejects.toThrow(new HTTPError(400, "Invalid email address or password"))
+    })
+
+    test("Returns an authentication token and a user, when all checks pass", async () => {
+      const user = {
+        email: "john.smith@test.com",
+        password: "Password123!"
+      }
+
+      const req = {
+        body: {
+          email: user.email,
+          password: user.password
+        }
+      }
+
+      require("./store").UserStore.getUserByEmail.mockResolvedValue(user)
+      require("bcryptjs").compareSync.mockReturnValue(true)
+      require("../authentication-token/generator").createAuthenticationToken.mockResolvedValue({token: "authentication-token"})
+
+      const res = await UserHandlers.authenticateUser(req)
+      
+      expect(res.token).toBe("authentication-token")
+      expect(res.user).toEqual(user)
+    })
+  })
 })

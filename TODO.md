@@ -1,4 +1,4 @@
-# Part 21 - Authenticating users (handler)
+# Part 22 - Authenticating users (route)
 
-- Add user authentication handler
-- Add unit tests
+* Add user authentication route
+* Add unit tests

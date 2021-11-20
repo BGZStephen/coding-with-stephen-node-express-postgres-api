@@ -33,7 +33,7 @@ describe("routes", () => {
         expect(jsonSpy).not.toHaveBeenCalled()
       })
 
-      test("throws an error if a required property is not present in the request", async () => {
+      test("When validation passes, call UserHandlers.createUser", async () => {
         const user = {
           firstName: "John",
           lastName: "Doe",
@@ -49,6 +49,8 @@ describe("routes", () => {
         const res = {
           json: jsonSpy
         }
+
+        require("./handlers").UserHandlers.createUser.mockResolvedValue({token: "", user: {}})
 
         const userCreateResponse = await userRouter.createUser(req, res)
 
