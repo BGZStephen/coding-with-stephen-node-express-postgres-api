@@ -27,6 +27,20 @@ const userCreationBodyConstraint = Joi.object().required().keys({
   'any.required': "Missing all user properties"
 })
 
+const userAuthenticationBodyConstraint = Joi.object().required().keys({
+  email: Joi.string().required().messages({
+    'string.base': "Email must be a string",
+    'any.required': "Email is required"
+  }),
+  password: Joi.string().required().messages({
+    'string.base': "Password must be a string",
+    'any.required': "Password is required"
+  })
+}).messages({
+  'any.required': "Missing authentication properties"
+})
+
 module.exports = {
-  userCreationBodyConstraint
+  userCreationBodyConstraint,
+  userAuthenticationBodyConstraint
 }
