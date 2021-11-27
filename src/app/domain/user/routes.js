@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { validateThrow } = require("../utils/validation");
-const { userCreationBodyConstraint } = require("./validation-constraints");
+const { userCreationBodyConstraint, userAuthenticationBodyConstraint } = require("./validation-constraints");
 const { UserHandlers } = require("./handlers");
 const { asyncwrap } = require("../utils/async-wrap");
 const { redactUser } = require("./redactor");
@@ -22,6 +22,14 @@ class UserRouter {
     validateThrow(req.body, userCreationBodyConstraint)
 
     const {user, token} = await UserHandlers.createUser(req);
+
+    res.json({user: redactUser(user), token})
+  }
+
+  async authenticateUser(req, res) {
+    validateThrow(req.body, userAuthenticationBodyConstraint)
+
+    const {user, token} = await UserHandlers.authenticateUser(req);
 
     res.json({user: redactUser(user), token})
   }
