@@ -4,7 +4,7 @@ class AuthenticationTokenStore {
   static async insertToken(authenticationTokenParams) {
     const { userId, token } = authenticationTokenParams;
 
-    const tokenQuery = await postgres.client.query('INSERT INTO "authentication-tokens"("userId", token) VALUES($1, $2) RETURNING *', [userId, token])
+    const tokenQuery = await postgres.client.query('INSERT INTO "authentication-tokens"("userId", token) VALUES($1, $2) ON CONFLICT ON CONSTRAINT "authentication-tokens_userId_key" DO UPDATE SET token = $2 RETURNING *', [userId, token])
 
     return tokenQuery.rows[0]
   }

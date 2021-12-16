@@ -1,3 +1,4 @@
-# Part 23 - Integration testing user authentication
+# Part 24 - Data generators for testing
 
-* Add user authentication integration tests
+* Create data generators for users
+* Apply data generators to existing tests
