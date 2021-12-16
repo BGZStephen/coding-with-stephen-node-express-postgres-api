@@ -12,6 +12,7 @@ class UserRouter {
     this.router = Router()
 
     this.router.post("/users", asyncwrap(this.createUser))
+    this.router.post("/users/authenticate", asyncwrap(this.authenticateUser))
   }
 
   get() {
