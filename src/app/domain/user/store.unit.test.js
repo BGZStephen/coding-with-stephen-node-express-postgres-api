@@ -1,4 +1,5 @@
 const { UserStore } = require("./store")
+const { generateUser } = require("../test-utils/user")
 
 jest.mock("../db")
 
@@ -9,12 +10,7 @@ beforeEach(() => {
 describe("UserStore", () => {
   describe("insertUser", () => {
     test("Calls query with the correct parameters in the expected order", async () => {
-      const user = {
-        firstName: "John",
-        lastName: "Smith",
-        email: "john.smith@test.com",
-        password: "Password123!"
-      }
+      const user = generateUser();
 
       const dbSendMock = require("../db").postgres.client.query.mockResolvedValue({ rows: [user] });
 
@@ -36,12 +32,7 @@ describe("UserStore", () => {
 
   describe("getUserByEmail", () => {
     test("Calls query with the correct parameters", async () => {
-      const user = {
-        firstName: "John",
-        lastName: "Smith",
-        email: "john.smith@test.com",
-        password: "Password123!"
-      }
+      const user = generateUser();
 
       const dbSendMock = require("../db").postgres.client.query.mockResolvedValue({ rows: [user] });
 

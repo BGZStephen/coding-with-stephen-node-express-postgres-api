@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "docker-compose up -d && nodemon",
     "unit-test": "jest --runInBand --coverage --verbose -c jest.unit.config.js",
-    "integration-test": "jest --verbose -c jest.integration.config.js",
+    "integration-test": "jest --verbose --runInBand -c jest.integration.config.js",
     "migrate": "DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres node-pg-migrate"
   },
   "dependencies": {

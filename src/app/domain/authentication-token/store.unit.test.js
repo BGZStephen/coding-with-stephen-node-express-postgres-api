@@ -20,7 +20,7 @@ describe("AuthenticationTokenStore", () => {
 
       const functionInputs = dbSendMock.mock.calls[0]
 
-      expect(functionInputs[0]).toEqual('INSERT INTO "authentication-tokens"("userId", token) VALUES($1, $2) RETURNING *')
+      expect(functionInputs[0]).toEqual('INSERT INTO "authentication-tokens"("userId", token) VALUES($1, $2) ON CONFLICT ON CONSTRAINT "authentication-tokens_userId_key" DO UPDATE SET token = $2 RETURNING *')
 
       expect(functionInputs[1][0]).toEqual(authenticationTokenParams.userId)
       expect(functionInputs[1][1]).toEqual(authenticationTokenParams.token)

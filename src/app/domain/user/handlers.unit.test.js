@@ -1,5 +1,6 @@
 const { HTTPError } = require("../errors/http-error");
 const { UserHandlers } = require("./handlers");
+const { generateUser } = require("../test-utils/user")
 
 jest.mock("bcryptjs")
 jest.mock("./store")
@@ -12,12 +13,7 @@ beforeEach(() => {
 describe("handlers", () => {
   describe("createUser", () => {
     test("When an existing user is found, throws an HTTPError", async () => {
-      const user = {
-        firstName: "John",
-        lastName: "Smith",
-        email: "john.smith@test.com",
-        password: "Password123!"
-      }
+      const user = generateUser();
 
       require("./store").UserStore.getUserByEmail.mockResolvedValue(user);
 
@@ -29,17 +25,12 @@ describe("handlers", () => {
     })
 
     test("When an existing user is not found, creates a user with a hashed password", async () => {
-      const user = {
-        firstName: "John",
-        lastName: "Smith",
-        email: "john.smith@test.com",
-        password: "Password123!"
-      }
+      const user = generateUser();
 
       const createdUser = {
-        firstName: "John",
-        lastName: "Smith",
-        email: "john.smith@test.com",
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
         password: "HASHED_PASSWORD"
       }
 
@@ -60,10 +51,9 @@ describe("handlers", () => {
 
   describe("authenticateUser", () => {
     test("Throws an error if the email provided does not match a user in our database", () => {
-      const user = {
-        email: "john.smith@test.com",
-        password: "Password123!"
-      }
+      const user = generateUser({
+        email: "john.smith@test.com"
+      });
 
       const req = {
         body: {
@@ -78,10 +68,10 @@ describe("handlers", () => {
     })
 
     test("Throws an error if the password provided does not match a found users password in our database", () => {
-      const user = {
+      const user = generateUser({
         email: "john.smith@test.com",
         password: "Password123!"
-      }
+      })
 
       const req = {
         body: {
@@ -97,10 +87,10 @@ describe("handlers", () => {
     })
 
     test("Returns an authentication token and a user, when all checks pass", async () => {
-      const user = {
+      const user = generateUser({
         email: "john.smith@test.com",
         password: "Password123!"
-      }
+      })
 
       const req = {
         body: {
