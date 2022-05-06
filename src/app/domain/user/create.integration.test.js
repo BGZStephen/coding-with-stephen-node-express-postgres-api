@@ -2,6 +2,7 @@ const { default: axios } = require("axios")
 const { postgres } = require("../db")
 const { config } = require("../config")
 const { resetDatabase } = require("../test-utils/db-queries")
+const { generateUser } = require("../test-utils/user")
 
 describe("user -> create", () => {
   beforeAll(async () => {
@@ -17,12 +18,7 @@ describe("user -> create", () => {
   })
 
   test("200 - creates a new user", async () => {
-    const user = {
-      firstName: "john",
-      lastName: "doe",
-      email: "john.doe@test.com",
-      password: "Password123!"
-    }
+    const user = generateUser();
 
     const res = await axios.post(`${config.API_URL}/users`, user)
 
@@ -40,12 +36,7 @@ describe("user -> create", () => {
   })
 
   test("400 - fails to create a user as a user already exists with that email", async () => {
-    const user = {
-      firstName: "john",
-      lastName: "doe",
-      email: "john.doe@test.com",
-      password: "Password123!"
-    }
+    const user = generateUser();
 
     await axios.post(`${config.API_URL}/users`, user)
 
@@ -59,11 +50,8 @@ describe("user -> create", () => {
   })
 
   test("400 - fails to create a user if firstName is not provided", async () => {
-    const user = {
-      lastName: "doe",
-      email: "john.doe@test.com",
-      password: "Password123!"
-    }
+    const user = generateUser();
+    delete user.firstName;
 
     try {
       await axios.post(`${config.API_URL}/users`, user)
@@ -75,11 +63,8 @@ describe("user -> create", () => {
   })
 
   test("400 - fails to create a user if lastName is not provided", async () => {
-    const user = {
-      firstName: "john",
-      email: "john.doe@test.com",
-      password: "Password123!"
-    }
+    const user = generateUser();
+    delete user.lastName;
 
     try {
       await axios.post(`${config.API_URL}/users`, user)
@@ -91,11 +76,8 @@ describe("user -> create", () => {
   })
 
   test("400 - fails to create a user if email is not provided", async () => {
-    const user = {
-      firstName: "john",
-      lastName: "doe",
-      password: "Password123!"
-    }
+    const user = generateUser();
+    delete user.email;
 
     try {
       await axios.post(`${config.API_URL}/users`, user)
@@ -106,12 +88,9 @@ describe("user -> create", () => {
     }
   })
 
-  test("400 - fails to create a user if firstName is not provided", async () => {
-    const user = {
-      firstName: "john",
-      lastName: "doe",
-      email: "john.doe@test.com",
-    }
+  test("400 - fails to create a user if password is not provided", async () => {
+    const user = generateUser();
+    delete user.password;
 
     try {
       await axios.post(`${config.API_URL}/users`, user)
@@ -123,12 +102,9 @@ describe("user -> create", () => {
   })
 
   test("400 - fails to create a user if firstName is not a string", async () => {
-    const user = {
-      firstName: 1,
-      lastName: "doe",
-      email: "john.doe@test.com",
-      password: "Password123!"
-    }
+    const user = generateUser({
+      firstName: 1
+    });
 
     try {
       await axios.post(`${config.API_URL}/users`, user)
@@ -140,12 +116,9 @@ describe("user -> create", () => {
   })
 
   test("400 - fails to create a user if lastName is not a string", async () => {
-    const user = {
-      firstName: "john",
-      lastName: 1,
-      email: "john.doe@test.com",
-      password: "Password123!"
-    }
+    const user = generateUser({
+      lastName: 1
+    });
 
     try {
       await axios.post(`${config.API_URL}/users`, user)
@@ -157,12 +130,9 @@ describe("user -> create", () => {
   })
 
   test("400 - fails to create a user if email is not a string", async () => {
-    const user = {
-      firstName: "john",
-      lastName: "doe",
-      email: 1,
-      password: "Password123!"
-    }
+    const user = generateUser({
+      email: 1
+    });
 
     try {
       await axios.post(`${config.API_URL}/users`, user)
@@ -174,12 +144,9 @@ describe("user -> create", () => {
   })
 
   test("400 - fails to create a user if password is not a string", async () => {
-    const user = {
-      firstName: "john",
-      lastName: "doe",
-      email: "john.doe@test.com",
+    const user = generateUser({
       password: 1
-    }
+    });
 
     try {
       await axios.post(`${config.API_URL}/users`, user)
@@ -191,12 +158,9 @@ describe("user -> create", () => {
   })
 
   test("400 - fails to create a user if password is not strong enough", async () => {
-    const user = {
-      firstName: "john",
-      lastName: "doe",
-      email: "john.doe@test.com",
+    const user = generateUser({
       password: "1"
-    }
+    });
 
     try {
       await axios.post(`${config.API_URL}/users`, user)
@@ -208,12 +172,9 @@ describe("user -> create", () => {
   })
 
   test("400 - fails to create a user if email is not a valid email address", async () => {
-    const user = {
-      firstName: "john",
-      lastName: "doe",
-      email: "john.doe",
-      password: "Password123!"
-    }
+    const user = generateUser({
+      email: "john.doe"
+    });
 
     try {
       await axios.post(`${config.API_URL}/users`, user)

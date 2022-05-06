@@ -1,5 +1,6 @@
 const express = require("express")
 const { UserRouter } = require("./routes")
+const { generateUser } = require("../test-utils/user")
 
 jest.mock("./handlers")
 jest.mock("./redactor")
@@ -14,11 +15,8 @@ describe("routes", () => {
 
     describe("createUser", () => {
       test("throws an error if a required property is not present in the request", () => {
-        const user = {
-          firstName: "John",
-          lastName: "Doe",
-          email: "john.doe@test.com"
-        }
+        const user = generateUser();
+        delete user.password;
 
         const req = {
           body: user
@@ -34,12 +32,7 @@ describe("routes", () => {
       })
 
       test("When validation passes, call UserHandlers.createUser", async () => {
-        const user = {
-          firstName: "John",
-          lastName: "Doe",
-          email: "john.doe@test.com",
-          password: "Password123!"
-        }
+        const user = generateUser();
 
         const req = {
           body: user

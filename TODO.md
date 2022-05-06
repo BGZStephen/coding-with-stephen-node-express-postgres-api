@@ -1,4 +1,5 @@
-# Part 24 - Data generators for testing
+# Part 25 - Set user middleware
 
-* Create data generators for users
-* Apply data generators to existing tests
+* Add middleware to provide context
+* Add middleware to set incoming authenticated user
+* Add unit tests

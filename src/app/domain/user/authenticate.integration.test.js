@@ -2,6 +2,7 @@ const { default: axios } = require("axios")
 const { postgres } = require("../db")
 const { config } = require("../config")
 const { resetDatabase } = require("../test-utils/db-queries")
+const { generateUser } = require("../test-utils/user")
 
 describe("user -> authenticate", () => {
   beforeAll(async () => {
@@ -17,12 +18,7 @@ describe("user -> authenticate", () => {
   })
 
   test("200 - authenticates a user", async () => {
-    const user = {
-      firstName: "john",
-      lastName: "doe",
-      email: "john.doe@test.com",
-      password: "Password123!"
-    }
+    const user = generateUser();
 
     await axios.post(`${config.API_URL}/users`, user)
 
@@ -58,18 +54,13 @@ describe("user -> authenticate", () => {
   })
 
   test("400 - submitted password does not match that of the user", async () => {
-    const user = {
-      firstName: "john",
-      lastName: "doe",
-      email: "john.doe@test.com",
-      password: "Password123!"
-    }
+    const user = generateUser();
 
     await axios.post(`${config.API_URL}/users`, user)
 
     try {
       await axios.post(`${config.API_URL}/users/authenticate`, {
-        email: "john.doe@test.com",
+        email: user.email,
         password: "invalidPassword"
       })
     } catch (err) {
